@@ -57,7 +57,7 @@ class BuildsController < ApplicationController
   patch '/builds/:id' do
     @build = Build.find_by(id: params[:id])
     if @build.user_id == current_user.id 
-      binding.pry
+     
     #need to make it so the program knows that the current user is the current build owner(build belongs to actual owner)
      @build.update(title: params[:title], description: params[:description], price: params[:price], image: params[:image])
     end    
