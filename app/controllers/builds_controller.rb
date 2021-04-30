@@ -28,7 +28,7 @@ class BuildsController < ApplicationController
     if @build.errors.any?
       erb :"/store/new_build"
     else
-      redirect to "/builds/#{@build.id}"
+      redirect "/builds/#{@build.id}"
       
     end
   end
@@ -56,13 +56,15 @@ class BuildsController < ApplicationController
 
   patch '/builds/:id' do
     @build = Build.find_by(id: params[:id])
-    
-    @build.update(title: params[:title], description: params[:description], price: params[:price], image: params[:image])
-            
-    if @build.errors.any?
+    if @build.user_id == current_user.id 
+      binding.pry
+    #need to make it so the program knows that the current user is the current build owner(build belongs to actual owner)
+     @build.update(title: params[:title], description: params[:description], price: params[:price], image: params[:image])
+    end    
+    if @build.errors.any? 
       erb :"/store/edit_build"
-    else
-      redirect to "/builds/#{@build.id}"
+    else 
+      redirect "/builds/#{@build.id}"
     end
      
   end
