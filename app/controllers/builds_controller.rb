@@ -1,10 +1,19 @@
 class BuildsController < ApplicationController
 
-  get '/builds' do
-    authenticate
+  get '/builds' do 
     @user = current_user
-    @builds = Build.all
+    if params[:search] != nil
+      @word = params[:search]
+    @builds = Build.where("title LIKE ?", "%#{params[:search]}%")
+
+    else 
+      @builds = Build.all
+    end
     erb :"store/builds"
+    #@user = current_user
+   
+    #if user inputs params, do the search, if not show all
+    
   end
 
   get '/builds/new' do
@@ -19,7 +28,8 @@ class BuildsController < ApplicationController
     if @build.errors.any?
       erb :"/store/new_build"
     else
-      erb :"store/show_build"
+      redirect to "/builds/#{@build.id}"
+      
     end
   end
 
@@ -28,7 +38,7 @@ class BuildsController < ApplicationController
     authenticate
     @build = Build.find_by_id(params[:id])
     redirect '/builds' if @build.nil?
-    #not_found if @item.nil?
+    
     erb :"store/show_build"
   end
 
@@ -46,14 +56,15 @@ class BuildsController < ApplicationController
 
   patch '/builds/:id' do
     @build = Build.find_by(id: params[:id])
-    # not_found if !@item
+    
     @build.update(title: params[:title], description: params[:description], price: params[:price], image: params[:image])
             
     if @build.errors.any?
       erb :"/store/edit_build"
     else
-      erb :"store/show_build"
+      redirect to "/builds/#{@build.id}"
     end
+     
   end
 
   delete '/builds/:id' do
@@ -63,7 +74,7 @@ class BuildsController < ApplicationController
     redirect '/builds'
   end
 
-  post '/builds/search' do
+  get '/builds/search' do
     @user = current_user
     @word = params[:search]
     @builds = Build.where("title LIKE ?", "%#{params[:search]}%")

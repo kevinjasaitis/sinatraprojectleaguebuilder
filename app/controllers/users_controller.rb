@@ -10,7 +10,6 @@ class UsersController < ApplicationController
         @user = User.create(username: params[:username], email: params[:email], password: params[:password])
 
         if @user.errors.any?
-            session[:user_id] = @user.id
             erb :"users/create_user"
         else
             session[:user_id] = @user.id

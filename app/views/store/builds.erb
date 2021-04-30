@@ -1,4 +1,4 @@
-<% if @search %>
+<% if @word %>
 	<h3>Showing builds matching '<%= @word %>':</h3>
     <% else %>
     <h3>Builds Index</h3>
@@ -12,8 +12,8 @@
 <a href="/users/<%= build.user.username %>"><%= build.user.username %></a></em></p>
 <% end %><br><br>
 
-<form action='/builds/search' method="post">
-    <p><label for="search">Search for an build:</label>
+<form action='/builds' method="get">
+    <p><label for="search">Search for a build:</label>
     <input type="text" id="search" name="search">
     <input type="submit"></p>
 </form>
