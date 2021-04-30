@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .content {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 110%;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+       
+        .center {
+            text-align:center
+        }   
+
+    </style>
+    <title>LEAGUEBUILDER || A Space to Build</title>
+</head>
+<body>
+
+    <table>
+ 
+        <td><a href='/'><img src="/photos/leaguebuilder.PNG" width=300></a></td>
+        <td>
+    	    <% if logged_in? %>
+                <p class="center">Hello, <%= current_user.username %>!<br>
+                <a href='/items'><img src="/photos/browse.png" width=75></a> <a href="/logout"><img src="/photos/signout.png" width=75></a></p>
+            <% else %>
+                <p class="center">Hi there!<br>
+                <a href="/login"><img src="/photos/signin.png" width=75></a> <a href="/signup"><img src="/photos/signup.png" width=75></a></p>
+            <% end %>  
+        </td>
+  
+    </table>
+
+    
+    
+    <div class="content">
+        <%= yield %>
+    </div>
+</body>
+</html>

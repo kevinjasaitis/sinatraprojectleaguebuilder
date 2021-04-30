@@ -1,0 +1,29 @@
+<% if @failed %>
+	<div id="error">
+		<p>You cannot edit another user's build</p>
+	</div>
+<% end %>
+
+<% if @build.user_id == current_user.id %>
+<table>
+  <tr>
+    <td><form action="/items/<%= @build.id %>/edit" method="get"><p class="right">Item Options: 
+      <button type="submit" alt="Edit Item"><img src="/photos/edit.png" width=55></button>
+        </p></form></td>
+    <td><form method="POST" action="/items/<%= @build.id %>"><p class="left">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <button type="submit" alt="Delete Item"><img src="/photos/delete.png" width=55></button>
+      </p></form></td>
+  </tr>
+</table>
+<% end %>
+
+<h3><%= @build.title %> | $<%= @build.price %></h3>
+<img src="<%= @build.image %>" width=400>
+<p>About this Item:
+<pre><%= @build.description %></pre></p>
+
+<p class="center">Created by <a href="/users/<%= @build.user.username %>"><%= @build.user.username %></a>
+<br><br><a href="mailto:<%= @build.user.email %>">Click here</a> to email the artist.</p>
+
+<p class="center"><a href="/items">Browse All Builds</a> || <a href='/'>Main Page</a></p>

@@ -1,0 +1,29 @@
+<h3>Sign Up Below:</h3>
+
+<% if @user.errors.any? %>
+  <div id="error">
+    <h3><%= @user.errors.count %> error(s) prohibited account creation:</h3>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form action='/signup' method='post'>
+    <p><label for="username">Username: </label><br>
+    <input type="text" name="username" value="<%= @user.username %>"><br><br>
+
+    <label for="email">Email Address: </label><br>
+    <input type="text" name="email" value="<%= @user.email %>"><br><br>
+
+    <label for="password">Password: </label><br>
+    <input type="text" name="password"><br><br>
+
+    <button type="submit" alt="Sign In"><img src="/photos/signup.png" width=55></button></p>
+</form>
+
+<br>
+<p class="center">Go back to <a href='/'>Main Page</a></p>

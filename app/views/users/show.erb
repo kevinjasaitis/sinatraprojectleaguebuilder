@@ -1,0 +1,9 @@
+<h3>All builds for <em><%= @user.username %></em>:</h3>
+<ul>
+<% @user.builds.each do |build| %>
+  <li><p><a href="/builds/<%= build.id %>"><%= build.title %></a></p></li>
+<% end %>
+</ul>
+
+<p class="center"><a href="/builds">Browse All Builds</a> || <a href='/'>Main Page</a></p>
+

@@ -1,0 +1,12 @@
+<h3>Welcome to Leaguebuilder!</h3>
+<p> A space to build.  At Leaguebuilder you can connect and share with other creators around the world.  Create an account today to gain access to all the features Leaguebuilder has to offer!</p>
+
+<% if logged_in? %>
+    <p> You are logged in as <%= current_user.username %><br><br>
+    Browse <a href='/builds'>all builds</a> or <a href="/logout">log out</a></p>
+<% else %>
+    <p>You are not logged in. <br><br>
+    To gain access, please <a href="/login">sign in</a> or <a href="/signup">create an account</a>.</p>
+<% end %>
+
+</div>

@@ -1,0 +1,22 @@
+<% if @search %>
+	<h3>Showing builds matching '<%= @word %>':</h3>
+    <% else %>
+    <h3>Builds Index</h3>
+    <p>Welcome, <%= @user.username %>! Here's all the Builds:<br>
+<% end %>
+
+
+
+<% @builds.each do |build| %>
+<p><a href="/builds/<%= build.id %>"><%= build.title %></a> by <em>
+<a href="/users/<%= build.user.username %>"><%= build.user.username %></a></em></p>
+<% end %><br><br>
+
+<form action='/builds/search' method="post">
+    <p><label for="search">Search for an build:</label>
+    <input type="text" id="search" name="search">
+    <input type="submit"></p>
+</form>
+<br><br>
+<p class="center"><a href="/builds/new">Create New Build</a></p>
+<p class="center">Go back to <a href='/'>Main Page</a></p>

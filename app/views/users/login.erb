@@ -1,0 +1,21 @@
+<h3>Login to Leaguebuilder</h3>
+
+<p>Please enter your credentials below to access Leaguebuilder.</p>
+
+<% if @failed %>
+	<div id="error">
+		<p>Username/Password combo incorrect.</p>
+	</div>
+<% end %>
+
+<form action="/login" method="POST">
+	<p><label for="username">Username:</label><br>
+	<input type="text" id="username" name="username"><br><br>
+	
+	<label for="password">Password:</label><br>
+	<input type="password" it="password" name="password"><br><br>
+
+	<button type="submit" alt="Sign In"><img src="/photos/signin.png" width=55></button></p>
+</form>
+<br>
+<p class="center">Go back to <a href='/'>Main Page</a></p>
